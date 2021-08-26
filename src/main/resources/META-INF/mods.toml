@@ -38,7 +38,7 @@ This mod is a riff on Call of Duty: Ghosts, where one of their big advertised fe
 
 In practice these "advanced fish" had no real collision (clipped through walls), only sometimes reacted to players, and didn't care for bullets all that much either.
 
-This mod makes vanilla fish react to items falling in the water.
+This mod makes vanilla fish react to items falling in the water, projectiles, and ignited tnt.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.examplemod]] #optional
