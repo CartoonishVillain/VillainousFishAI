@@ -1,14 +1,12 @@
 package com.cartoonishvillain.villainousfishai;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.PrimedTnt;
+import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +17,7 @@ import javax.annotation.Nullable;
 public class TheBigFishEvent {
 
     private static boolean avoidsinking(@Nullable Entity entity) {
-        if(entity != null && entity.isInWater() && entity.getDeltaMovement() != Vector3d.ZERO)return true;
+        if(entity != null && entity.isInWater() && entity.getDeltaMovement() != Vec3.ZERO)return true;
         else return false;
     }
 
@@ -28,10 +26,10 @@ public class TheBigFishEvent {
     public static void Fish(LivingEvent.LivingUpdateEvent event){
         EntityType<?> entityType = event.getEntityLiving().getType();
         if(event.getEntityLiving().tickCount == 2 && (entityType == EntityType.COD || entityType == EntityType.SALMON || entityType == EntityType.TROPICAL_FISH || entityType == EntityType.PUFFERFISH)){
-            AbstractFishEntity entity = (AbstractFishEntity) event.getEntityLiving();
+            AbstractFish entity = (AbstractFish) event.getEntityLiving();
             entity.goalSelector.addGoal(3, new FishAvoidGoal<ItemEntity>(entity, ItemEntity.class, 6.0f, 1.4d, TheBigFishEvent::avoidsinking));
-            entity.goalSelector.addGoal(3, new FishAvoidGoal<ProjectileEntity>(entity, ProjectileEntity.class, 6.0f, 1.5D, TheBigFishEvent::avoidsinking));
-            entity.goalSelector.addGoal(3, new FishAvoidGoal<TNTEntity>(entity, TNTEntity.class, 6.0f, 1.6D, TheBigFishEvent::avoidsinking));
+            entity.goalSelector.addGoal(3, new FishAvoidGoal<Projectile>(entity, Projectile.class, 6.0f, 1.5D, TheBigFishEvent::avoidsinking));
+            entity.goalSelector.addGoal(3, new FishAvoidGoal<PrimedTnt>(entity, PrimedTnt.class, 6.0f, 1.6D, TheBigFishEvent::avoidsinking));
 
         }
     }

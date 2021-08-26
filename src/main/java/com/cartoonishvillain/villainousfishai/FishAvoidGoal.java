@@ -1,17 +1,14 @@
 package com.cartoonishvillain.villainousfishai;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityPredicate;
-import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.function.Predicate;
 
 /*
@@ -20,17 +17,17 @@ This implementation allows any entity to be avoidable.
  */
 
 public class FishAvoidGoal<T extends Entity> extends Goal {
-    protected final CreatureEntity avoider;
+    protected final PathfinderMob avoider;
     protected final double speedmodifier;
     protected T entityToAvoid;
     protected final float biggestreaction;
     protected Class<T> entityClassToAvoid;
     protected final Predicate<Entity> extraAvoidDetails;
     protected Path path;
-    protected final PathNavigator pathNav;
+    protected final PathNavigation pathNav;
 
 
-    public FishAvoidGoal(CreatureEntity avoider, Class<T> entityToAvoid, float biggestreaction, double speedmodifier, Predicate<Entity> extradetails){
+    public FishAvoidGoal(PathfinderMob avoider, Class<T> entityToAvoid, float biggestreaction, double speedmodifier, Predicate<Entity> extradetails){
         this.avoider = avoider;
         this.entityClassToAvoid = entityToAvoid;
         this.biggestreaction = biggestreaction;
@@ -54,7 +51,7 @@ public class FishAvoidGoal<T extends Entity> extends Goal {
 
         if(entityToAvoid == null) return false;
         else {
-            Vector3d vector3d = RandomPositionGenerator.getPosAvoid(this.avoider, 16, 7, this.entityToAvoid.position());
+            Vec3 vector3d = DefaultRandomPos.getPosAway(this.avoider, 16, 7, this.entityToAvoid.position());
             if (vector3d == null) return false;
             else if (this.entityToAvoid.distanceToSqr(vector3d.x, vector3d.y, vector3d.z) < this.entityToAvoid.distanceToSqr(this.avoider))
                 return false;
