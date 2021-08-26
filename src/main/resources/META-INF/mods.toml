@@ -34,10 +34,11 @@ displayName="Villainous Fish AI" #mandatory
 authors="CartoonishVillain" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-This mod is a riff on Call of Duty: Ghosts, where one of their big advetised features were some advanced fish AI that moved out of the way when you got near...
+This mod is a riff on Call of Duty: Ghosts, where one of their big advertised features were some advanced fish AI that moved out of the way when you got near...
+
 In practice these "advanced fish" had no real collision (clipped through walls), only sometimes reacted to players, and didn't care for bullets all that much either.
 
-This mod makes vanilla fish react to items falling in the water. They seem to already maybe react to players in some way? Maybe Mojang took a shot at Ghosts themselves?
+This mod makes vanilla fish react to items falling in the water, projectiles, and ignited tnt.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.examplemod]] #optional
