@@ -1,5 +1,7 @@
 package com.cartoonishvillain.villainousfishai;
 
+import com.cartoonishvillain.villainousfishai.configs.ConfigHelper;
+import com.cartoonishvillain.villainousfishai.configs.SConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -7,6 +9,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -25,8 +28,10 @@ public class VillainousFishAI
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "villainousfishai";
+    public static SConfiguration config;
 
     public VillainousFishAI() {
+        config = ConfigHelper.register(ModConfig.Type.SERVER, SConfiguration::new);
 //        // Register the setup method for modloading
 //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 //        // Register the enqueueIMC method for modloading
