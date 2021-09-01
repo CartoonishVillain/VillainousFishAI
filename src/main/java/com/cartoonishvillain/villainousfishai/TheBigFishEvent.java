@@ -27,6 +27,17 @@ public class TheBigFishEvent {
         EntityType<?> entityType = event.getEntityLiving().getType();
         if(event.getEntityLiving().tickCount == 2 && (entityType == EntityType.COD || entityType == EntityType.SALMON || entityType == EntityType.TROPICAL_FISH || entityType == EntityType.PUFFERFISH)){
             AbstractFish entity = (AbstractFish) event.getEntityLiving();
+
+            if(VillainousFishAI.config.AVOIDDROPS.get()) {
+                entity.goalSelector.addGoal(3, new FishAvoidGoal<ItemEntity>(entity, ItemEntity.class, 6.0f, VillainousFishAI.config.FISHITEMSPEED.get(), TheBigFishEvent::avoidsinking));
+            }
+
+            if(VillainousFishAI.config.AVOIDPROJECTILES.get()){
+                entity.goalSelector.addGoal(3, new FishAvoidGoal<Projectile>(entity, Projectile.class, 6.0f, VillainousFishAI.config.FISHPROJECTILESPEED.get(), TheBigFishEvent::avoidsinking));}
+
+            if(VillainousFishAI.config.AVOIDTNT.get()) {
+                entity.goalSelector.addGoal(3, new FishAvoidGoal<PrimedTnt>(entity, PrimedTnt.class, 6.0f, VillainousFishAI.config.FISHTNTSPEED.get(), TheBigFishEvent::avoidsinking));
+            }
             entity.goalSelector.addGoal(3, new FishAvoidGoal<ItemEntity>(entity, ItemEntity.class, 6.0f, 1.4d, TheBigFishEvent::avoidsinking));
             entity.goalSelector.addGoal(3, new FishAvoidGoal<Projectile>(entity, Projectile.class, 6.0f, 1.5D, TheBigFishEvent::avoidsinking));
             entity.goalSelector.addGoal(3, new FishAvoidGoal<PrimedTnt>(entity, PrimedTnt.class, 6.0f, 1.6D, TheBigFishEvent::avoidsinking));

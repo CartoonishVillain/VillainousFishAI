@@ -1,7 +1,10 @@
 package com.cartoonishvillain.villainousfishai;
 
+import com.cartoonishvillain.villainousfishai.configs.ConfigHelper;
+import com.cartoonishvillain.villainousfishai.configs.SConfiguration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -14,9 +17,11 @@ public class VillainousFishAI
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "villainousfishai";
+    public static SConfiguration config;
 
     public VillainousFishAI() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        config = ConfigHelper.register(ModConfig.Type.SERVER, SConfiguration::new);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
