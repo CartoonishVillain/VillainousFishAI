@@ -27,17 +27,13 @@ displayName="Villainous Fish AI" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
+#logoFile="multiloader.png" #optional
 # A text field displayed in the mod UI
-#credits="" #optional
+credits="" #optional
 # A text field displayed in the mod UI
 authors="CartoonishVillain" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-This mod is a riff on Call of Duty: Ghosts, where one of their big advertised features were some advanced fish AI that moved out of the way when you got near...
-
-In practice these "advanced fish" had no real collision (clipped through walls), only sometimes reacted to players, and didn't care for bullets all that much either.
-
 This mod makes vanilla fish react to items falling in the water, projectiles, and ignited tnt.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
@@ -57,6 +53,6 @@ This mod makes vanilla fish react to items falling in the water, projectiles, an
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.18, 1.19)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"

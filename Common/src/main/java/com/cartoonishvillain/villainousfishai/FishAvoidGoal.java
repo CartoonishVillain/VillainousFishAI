@@ -1,6 +1,13 @@
 package com.cartoonishvillain.villainousfishai;
 
+
+/*
+This class was designed only because the AvoidEntity goal class only allows Living Entities to exist.
+This implementation allows any entity to be avoidable.
+ */
+
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -11,13 +18,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-/*
-This class was designed only because the AvoidEntity goal class only allows Living Entities to exist.
-This implementation allows any entity to be avoidable.
- */
-
 public class FishAvoidGoal<T extends Entity> extends Goal {
-    protected final PathfinderMob avoider;
+    protected final Mob avoider;
     protected final double speedmodifier;
     protected T entityToAvoid;
     protected final float biggestreaction;
@@ -27,7 +29,7 @@ public class FishAvoidGoal<T extends Entity> extends Goal {
     protected final PathNavigation pathNav;
 
 
-    public FishAvoidGoal(PathfinderMob avoider, Class<T> entityToAvoid, float biggestreaction, double speedmodifier, Predicate<Entity> extradetails){
+    public FishAvoidGoal(Mob avoider, Class<T> entityToAvoid, float biggestreaction, double speedmodifier, Predicate<Entity> extradetails){
         this.avoider = avoider;
         this.entityClassToAvoid = entityToAvoid;
         this.biggestreaction = biggestreaction;
@@ -51,7 +53,7 @@ public class FishAvoidGoal<T extends Entity> extends Goal {
 
         if(entityToAvoid == null) return false;
         else {
-            Vec3 vector3d = DefaultRandomPos.getPosAway(this.avoider, 16, 7, this.entityToAvoid.position());
+            Vec3 vector3d = DefaultRandomPos.getPosAway((PathfinderMob) this.avoider, 16, 7, this.entityToAvoid.position());
             if (vector3d == null) return false;
             else if (this.entityToAvoid.distanceToSqr(vector3d.x, vector3d.y, vector3d.z) < this.entityToAvoid.distanceToSqr(this.avoider))
                 return false;
