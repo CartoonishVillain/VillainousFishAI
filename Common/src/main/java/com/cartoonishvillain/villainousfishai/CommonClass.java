@@ -12,6 +12,4 @@ public class CommonClass {
     public static boolean avoidsinking(@Nullable Entity entity) {
         return entity != null && entity.isInWater() && entity.getDeltaMovement() != Vec3.ZERO;
     }
-
-
 }
