@@ -43,7 +43,7 @@ public class FishAvoidGoal<T extends Entity> extends Goal {
     public boolean canUse() {
         float prevdistance = Float.MAX_VALUE;
         //find the nearest avoidable entity.
-        for(T entity :  avoider.level.getEntitiesOfClass(this.entityClassToAvoid, avoider.getBoundingBox().inflate(this.biggestreaction))){
+        for(T entity :  avoider.level().getEntitiesOfClass(this.entityClassToAvoid, avoider.getBoundingBox().inflate(this.biggestreaction))){
             float distance = avoider.distanceTo(entity);
             if(distance < prevdistance && extraAvoidDetails.test(entity)){
                 prevdistance = distance;
