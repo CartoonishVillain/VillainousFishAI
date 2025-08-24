@@ -1,6 +1,5 @@
 package com.cartoonishvillain.villainousfishai;
 
-
 /*
 This class was designed only because the AvoidEntity goal class only allows Living Entities to exist.
 This implementation allows any entity to be avoidable.

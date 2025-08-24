@@ -1,15 +1,15 @@
 package com.cartoonishvillain.villainousfishai.platform;
 
 import com.cartoonishvillain.villainousfishai.platform.services.IPlatformHelper;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLLoader;
 
-public class ForgePlatformHelper implements IPlatformHelper {
+public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public String getPlatformName() {
 
-        return "Forge";
+        return "NeoForge";
     }
 
     @Override

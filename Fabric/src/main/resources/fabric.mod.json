@@ -1,33 +1,36 @@
 {
     "schemaVersion": 1,
-    "id": "villainousfishai",
+    "id": "${mod_id}",
     "version": "${version}",
-  
-    "name": "Villainous Fish AI",
-    "description": "This mod makes vanilla fish react to items falling in the water, projectiles, and ignited tnt.",
+    "name": "${mod_name}",
+    "description": "${description}",
     "authors": [
-      "CartoonishVillain!"
+        "${mod_author}"
     ],
-  
-    "license": "MIT",
-    "icon": "assets/modid/icon.png",
-  
+    "contact": {
+        "homepage": "https://fabricmc.net/",
+        "sources": "https://github.com/FabricMC/fabric-example-mod"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
     "environment": "*",
     "entrypoints": {
-      "main": [
-        "com.cartoonishvillain.villainousfishai.VillainousFishAI"
-      ]
+        "main": [
+            "com.cartoonishvillain.villainousfishai.FabricFish"
+        ]
     },
     "mixins": [
-      "villainousfishai.mixins.json",
-      "villainousfishai.fabric.mixins.json"
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
     ],
-  
     "depends": {
-      "fabricloader": ">=0.14",
-      "fabric": "*",
-      "minecraft": "1.19.x",
-      "java": ">=17"
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=${java_version}"
+    },
+    "suggests": {
+        "another-mod": "*"
     }
-  }
+}
   
